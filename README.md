@@ -1,2 +1,3 @@
-# openpay
+# Openpay Dashboard
+
 Openpay dashboard
