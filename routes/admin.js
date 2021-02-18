@@ -1,46 +1,37 @@
-var requireAuthentication = require('../middlewares/require_auth');
 var express = require('express');
 
-var route_admin = express.Router();
+var admin_router = express.Router();
+var auth_middleware = require('../middlewares/auth');
+var admin_controller = require('../controllers/admin');
 
-route_admin.get(
+admin_router.get(
     '/',
-    requireAuthentication,
-    function(req, res) {
-        res.json({ message: 'Admins list' });
-    }
+    auth_middleware.require,
+    admin_controller.list
 );
 
-route_admin.post(
+admin_router.post(
     '/',
-    requireAuthentication,
-    function(req, res) {
-        res.json({ message: 'New admin' });
-    }
+    auth_middleware.require,
+    admin_controller.new
 );
 
-route_admin.get(
+admin_router.get(
     '/:admin_id',
-    requireAuthentication,
-    function(req, res) {
-        res.json({ message: 'Get admin' });
-    }
+    auth_middleware.require,
+    admin_controller.get
 );
 
-route_admin.put(
+admin_router.put(
     '/:admin_id',
-    requireAuthentication,
-    function(req, res) {
-        res.json({ message: 'Edit admin' });
-    }
+    auth_middleware.require,
+    admin_controller.edit
 );
 
-route_admin.delete(
+admin_router.delete(
     '/:admin_id',
-    requireAuthentication,
-    function(req, res) {
-        res.json({ message: 'Delete admin' });
-    }
+    auth_middleware.require,
+    admin_controller.delete
 );
 
-module.exports = route_admin;
+module.exports = admin_router;

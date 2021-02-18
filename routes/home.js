@@ -1,12 +1,11 @@
 var express = require('express');
 
-var route_home = express.Router();
+var home_router = express.Router();
+var home_controller = require('../controllers/home');
 
-route_home.get(
+home_router.get(
     '/',
-    function(req, res) {
-        res.send('');
-    }
+    home_controller.out
 );
 
-module.exports = route_home;
+module.exports = home_router;

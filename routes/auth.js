@@ -1,39 +1,30 @@
-var requireAuthentication = require('../middlewares/require_auth');
 var express = require('express');
 var passport = require('passport');
 
-var route_login = express.Router();
+var auth_router = express.Router();
+var auth_middleware = require('../middlewares/auth');
+var auth_controller = require('../controllers/auth');
 
-route_login.get(
+auth_router.get(
     '/',
-    function(req, res) {
-        res.json({ isAuthenticated: req.isAuthenticated() });
-    }
+    auth_controller.authenticated
 );
 
-route_login.get(
+auth_router.get(
     '/login-form', 
-    function(req, res) {
-        res.render('../views/login_form.ejs');
-    }
+    auth_controller.login_form
 );
 
-route_login.post(
+auth_router.post(
     '/',
     passport.authenticate('local', { failureFlash: true }),
-    requireAuthentication,
-    function(req, res) {
-        res.json({ message: 'It is authenticated.' });
-    }
+    auth_middleware.require,
+    auth_controller.login
 );
 
-route_login.delete(
+auth_router.delete(
     '/', 
-    function(req, res) {
-        req.session.destroy(function (err) {
-            res.json({ message: 'Logout.' });
-        });
-    }
+    auth_controller.logout
 );
 
-module.exports = route_login;
+module.exports = auth_router;

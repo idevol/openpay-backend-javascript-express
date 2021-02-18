@@ -1,46 +1,37 @@
-var requireAuthentication = require('../middlewares/require_auth');
 var express = require('express');
 
-var route_customers = express.Router();
+var customers_router = express.Router();
+var auth_middleware = require('../middlewares/auth');
+var customer_controller = require('../controllers/customers');
 
-route_customers.get(
+customers_router.get(
     '/',
-    requireAuthentication,
-    function(req, res) {
-        res.json({ message: 'Customers list' });
-    }
+    auth_middleware.require,
+    customer_controller.list
 );
 
-route_customers.post(
+customers_router.post(
     '/',
-    requireAuthentication,
-    function(req, res) {
-        res.json({ message: 'New customer' });
-    }
+    auth_middleware.require,
+    customer_controller.new
 );
 
-route_customers.get(
+customers_router.get(
     '/:customer_id',
-    requireAuthentication,
-    function(req, res) {
-        res.json({ message: 'Get customer' });
-    }
+    auth_middleware.require,
+    customer_controller.get
 );
 
-route_customers.put(
+customers_router.put(
     '/:customer_id',
-    requireAuthentication,
-    function(req, res) {
-        res.json({ message: 'Edit customer' });
-    }
+    auth_middleware.require,
+    customer_controller.edit
 );
 
-route_customers.delete(
+customers_router.delete(
     '/:customer_id',
-    requireAuthentication,
-    function(req, res) {
-        res.json({ message: 'Delete customer' });
-    }
+    auth_middleware.require,
+    customer_controller.delete
 );
 
-module.exports = route_customers;
+module.exports = customers_router;
