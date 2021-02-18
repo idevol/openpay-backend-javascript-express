@@ -15,13 +15,21 @@ var app = express();
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(session({ secret: 'secret', cookie: { maxAge: 1000*60*60*24 }}));
+app.use(session({ 
+    secret: process.env.SESSION_SECRET, 
+    cookie: { maxAge: 1000*60*60*24 },
+    resave: true,
+    saveUninitialized: true
+}));
 require('./config/passport')(app);
 app.use(flash());
 
-app.use('/', require('./routes/login'));
-app.use('/dashboard', require('./routes/dashboard'));
+app.use('/', require('./routes/home'));
+app.use('/auth', require('./routes/auth'));
+app.use('/admin', require('./routes/admin'));
+app.use('/customers', require('./routes/customers'));
 
 app.listen(process.env.PORT, function() {
     console.log('Start server on port:', process.env.PORT);
