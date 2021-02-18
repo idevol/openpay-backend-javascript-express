@@ -13,9 +13,6 @@ module.exports = function () {
         passReqToCallback : true 
     },
     function(req, username, password, done) {
-        console.log(username);
-        console.log(password);
-
         findOrCreateUser = function(){
             // find a user in Mongo with provided username
             User.findOne({'username': username}, function(err, user) {

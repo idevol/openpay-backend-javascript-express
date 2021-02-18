@@ -14,6 +14,6 @@ module.exports = function(app) {
             done(err, user);
         });
     });
-    
-    require('./local.strategy.js')();
+        
+    require('./local.strategy.auth')();
 };
