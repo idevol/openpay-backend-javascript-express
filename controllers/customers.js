@@ -1,19 +1,21 @@
+var request = require('../util/request');
+
 exports.list = function(req, res) {
-    res.json({ message: 'Customers list' });
+    request.openpay(res, 'GET', '/customers');
 };
 
 exports.new = function(req, res) {
-    res.json({ message: 'New customer' });
+    request.openpay(res, 'POST', '/customers', req.body);
 };
 
 exports.get = function(req, res) {
-    res.json({ message: 'Get customer' });
+    request.openpay(res, 'GET', '/customers/' + req.params.customer_id);
 };
 
 exports.edit = function(req, res) {
-    res.json({ message: 'Edit customer' });
+    request.openpay(res, 'PUT', '/customers/' + req.params.customer_id, req.body);
 };
 
 exports.delete = function(req, res) {
-    res.json({ message: 'Delete customer' });
+    request.openpay(res, 'DELETE', '/customers/' + req.params.customer_id, req.body);
 };
