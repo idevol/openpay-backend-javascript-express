@@ -1,4 +1,4 @@
-var User = require('../models/user');
+var Admin = require('../models/admin');
 var passport = require('passport');
 
 module.exports = function(app) {
@@ -10,7 +10,7 @@ module.exports = function(app) {
     });
       
     passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
+        Admin.findById(id, function(err, user) {
             done(err, user);
         });
     });

@@ -2,7 +2,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var bcrypt = require('bcrypt');
-var User = require('../models/user');
+var Admin = require('../models/admin');
 
 var isValidPassword = function(user, password){
     return bcrypt.compareSync(password, user.password);
@@ -14,7 +14,7 @@ module.exports = function () {
     },
     function(req, username, password, done) { 
         // check in mongo if a user with username exists or not
-        User.findOne({ 'username' :  username }, 
+        Admin.findOne({ 'username' :  username }, 
             function(err, user) {
                 // In case of any error, return using the done method
                 if (err) { console.log(err); return done(err); }
