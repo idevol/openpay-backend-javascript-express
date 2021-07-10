@@ -22,18 +22,18 @@
   },
   "homepage": "https://github.com/idevol/openpay#readme",
   "dependencies": {
-    "bcrypt": "^5.0.0",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
-    "connect-mongo": "^3.2.0",
+    "connect-mongo": "^4.4.1",
     "cookie-parser": "^1.4.5",
-    "dotenv": "^8.2.0",
+    "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "express-session": "^1.17.1",
+    "express-session": "^1.17.2",
     "flash": "^1.1.0",
     "if-env": "^1.0.4",
-    "jshint": "^2.12.0",
-    "mongoose": "^5.11.16",
+    "jshint": "^2.13.0",
+    "mongoose": "^5.13.2",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
@@ -41,6 +41,6 @@
   },
   "devDependencies": {
     "node-env-run": "^4.0.2",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.11"
   }
 }
