@@ -3,7 +3,7 @@ require('dotenv').config();
 var request = require('request');
 
 var op_url = process.env.OP_HOST + '/' + process.env.OP_API_VERSION + '/' + process.env.OP_MERCHANT_ID;
-var op_auth = 'Basic ' + new Buffer(process.env.OP_SECRET_KEY + ':').toString('base64');
+var op_auth = 'Basic ' + Buffer.from(process.env.OP_SECRET_KEY + ':').toString('base64');
 
 exports.openpay = function(res, method, path, body) {
     op_request_params = {
